@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Proj-E</title>
+      <meta charset="utf-8"/>
+      <meta content="width=device-width, initial-scale=1" name="viewport"/>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet"/>
+      <link href="/44F18_ProjD/res/B.css" rel="stylesheet"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="res/e.js"></script>
+   </head>
+   <body onload="init();">
+      <div style="margin-top: 40px" class="container">
+         <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+               <div class="panel panel-default">
+                  <div class="panel-body">
+                     <div class="row">
+                        <div class="center-block"><img alt="" src="/44F18_ProjD/res/Dash.png?sz=120" class="profile-img"/></div>
+                     </div>
+                     
+                     <!-- DASH BIAED -->
+                     <div class="row view" id="dashDiv">
+                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                           <div class="form-group">
+                              <a class="btn btn-lg btn-primary btn-block" href='javascript:show("primeDiv");'>Primer Number Finder</a>
+                           </div>
+                           <div class="form-group">
+                              <a class="btn btn-lg btn-primary btn-block" href='javascript:show("sisDiv");'>GPS Distance Calculator</a>
+                           </div>
+                        </div>
+                     </div>
+                     
+                      <div class="row view" id="primeDiv">
+		                  <form id="primeForm" onsubmit="prime(this); return false;">
+		                     <fieldset>
+		                      
+		                        <div class="row">
+		                           <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+		                              <div class="form-group">
+		                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-chevron-right"><span/></i></span><input id="min" type="text" name="min" placeholder="Larger than ... " class="form-control"/></div>
+		                              </div>
+		                              <div class="form-group">
+		                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-chevron-left"><span/></i></span><input id="max" type="text" name="max" placeholder="But not larger than ..." class="form-control"/></div>
+		                              </div>
+		                              <div class="form-group"><input value="Find" onclick="find()" id="calc" class="btn btn-lg btn-primary btn-block" type="submit"/></div>
+		                           </div>
+		                        </div>
+		                     </fieldset>
+		                	 <div id="addResult">
+			               		    <input type="hidden" id="previous" name="previous" value=""/>
+		                 	</div>
+		                  </form>
+		               </div>
+		               
+		               <!--  SIS DIV -->
+			          <div class="row view" id="sisDiv">
+	                     <form id="sisForm" onsubmit="sis(this); return false;">
+	                        <fieldset>
+	                           <div class="row">
+	                              <div class="col-sm-12 col-md-12 ">
+	                                 <div class="form-group">
+	                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-education"><span/></i></span><input type="text" value="${prefix}" name="prefix" placeholder="Name prefix ..." class="form-control"/></div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-step-forward"><span/></i></span><input type="text" value="${minGpa}" name="minGpa" placeholder="Minimum GPA" class="form-control"/></div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                    <div class="input-group">
+	                                       <select id="sortBy" name="sortBy" value="${sortBy}">
+	                                          <option selected="any" value="NONE">Select One:</option>
+	                                          <option value="SURNAME">Last Name</option>
+	                                          <option value="MAJOR">Major</option>
+	                                          <option value="COURSES">Number of Courses</option>
+	                                          <option value="GPA">GPA</option>
+	                                       </select>
+	                                    </div>
+	                                 </div>
+	                                 <div class="form-group"><input value="Generate Report" name="calc" class="btn btn-lg btn-primary btn-block" type="submit"/></div>
+	                              </div>
+	                           </div>
+	                           <div class="row">
+	                              <div class="col-sm-12 col-md-12">
+	                              	<p class="text-center"><i>Sorted by "${sortBy}"</i></p>
+	                              	<table style="margin:auto;" border="1">
+	                              		<c:forEach var="s" items="${result}">
+											<tr>
+												<td>${s.name}</td>
+												<td>${s.major}</td>
+												<td>${s.courses}</td>
+												<td>${s.gpa}</td>
+											</tr>
+										</c:forEach>
+	                              	</table>
+	                              </div>
+	                           </div>
+	                        </fieldset>
+	                     </form>
+	                  </div>
+		               
+		               
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+
+</jsp:root>
