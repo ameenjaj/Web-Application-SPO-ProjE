@@ -77,10 +77,10 @@ public class Engine
 		
 	}
 	
-	public List<StudentBean> getSIS(String prefix,  String sortBy, String minGpa) throws Exception
+	public String getSIS(String prefix,  String sortBy, String minGpa) throws Exception
 	{
 		StudentDAO studentDao = new StudentDAO(prefix, sortBy, minGpa);
-		return studentDao.retreive();
+		return studentDao.retreiveInJson();
 	}
 	
 	

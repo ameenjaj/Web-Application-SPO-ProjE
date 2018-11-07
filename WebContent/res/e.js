@@ -20,6 +20,20 @@ function hideAll()
 	}
 }
 
+function sis(f)
+{
+	let prefix = f.elements["prefix"].value;
+	let minGpa = f.elements["minGpa"].value;
+	let sortBy = f.elements["sortBy"].value;
+	let calc = f.elements["calc"].value;
+	let qs = "";
+
+	 
+ 	qs = "calc=" + calc + "&minGpa=" + minGpa + "&sortBy=" + sortBy + "&prefix=" + prefix;
+	
+	doSimpleAjax("Sis.do", qs, sisResp);
+}
+
 function prime(f)
 {
 	let min = f.elements["min"].value;
@@ -36,7 +50,7 @@ function prime(f)
 	findB = false;
 	
 		
-	doSimpleAjax("prime.do", qs, primeResp);
+	doSimpleAjax("Prime.do", qs, primeResp);
 }
 
 function find() {
@@ -63,6 +77,25 @@ function primeResp(request)
 			html += "<p style='color:red'>Error: " + resp.error + "</p>";
 		}
 		document.getElementById("addResult").innerHTML = html ;
+	}
+}
+
+function sisResp(request)
+{
+	if ((request.readyState == 4) && (request.status == 200)) 
+	{
+		let resp = JSON.parse(request.responseText);
+		let html = "";
+		if (resp.status == 1)
+		{
+			
+			html += "<div>" + resp.result + "</div>";
+		}
+		else
+		{
+			html += "<div style='color:red'>Error: " + resp.error + "</div>";
+		}
+		document.getElementById("sisResult").innerHTML = html ;
 	}
 }
 

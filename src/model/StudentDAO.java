@@ -48,5 +48,17 @@ public class StudentDAO
 		 return students;
 	 }
 	 
+	public String retreiveInJson() {
+		 String response = "[";
+		 int counter = 0;
+		 for (StudentBean student: students) {
+			 counter++;
+			 response += String.format("{\"name\": \"%s\", \"major\": \"%s\", \"gpa\": %f, \"courses\": %d},", 
+					  student.getName(), student.getMajor(),  student.getGpa(), student.getCourses());
+		 }
+		 response += "{\"name\": \"%s\", \"major\": \"Hello\", \"gpa\": 2.2, \"courses\": 1}]";
+			 			 
+		 return response;
+	 }
 	
 }

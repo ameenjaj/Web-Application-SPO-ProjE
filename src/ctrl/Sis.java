@@ -1,6 +1,8 @@
 package ctrl;
 
 import java.io.IOException;
+import java.io.Writer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,23 +31,22 @@ public class Sis extends HttpServlet {
 			String minGpa = request.getParameter("minGpa");
 			String sortBy = request.getParameter("sortBy");
 			
-			request.setAttribute("prefix", prefix);
-			request.setAttribute("minGpa", minGpa);
-			request.setAttribute("sortBy", sortBy);
+			Writer out = response.getWriter();
+			response.setContentType("text/json");
+			
 
 			try
 			{
 				Engine engine = Engine.getInstance();
-				request.setAttribute("result",  engine.getSIS(prefix, sortBy, minGpa));
+				out.write("{\"status\": 1, \"result\": " +  engine.getSIS(prefix, sortBy, minGpa) + "}");
 			} 
 			catch (Exception e)
 			{
-				request.setAttribute("error", e.getMessage());
+				out.write("{\"status\": 0, \"error\": \"" + e.getMessage() + "\"}");
 			}
 			
 			
 		}
-		this.getServletContext().getRequestDispatcher("/Sis.jspx").forward(request, response);
 	}
 
 	
